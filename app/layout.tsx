@@ -3,6 +3,7 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 import CookieConsent from "@/components/cookie-consent";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -40,6 +41,7 @@ export default function RootLayout({
           <div className="page-root">
             <Navigation />
             <main>{children}</main>
+            <Footer />
             <CookieConsent />
           </div>
         </ThemeProvider>

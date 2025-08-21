@@ -1,4 +1,4 @@
-# Rafał Gołąb - Professional CV Website
+# Professional Resume Website
 
 A modern, responsive CV/Portfolio website built with Next.js, TypeScript, and Tailwind CSS.
 
@@ -18,19 +18,20 @@ A modern, responsive CV/Portfolio website built with Next.js, TypeScript, and Ta
 ### Prerequisites
 
 - Node.js 16.x or later
-- npm or yarn
+- bun package manager
 
 ### Installation
 
 1. Install dependencies:
+
 ```bash
-cd rafal-cv
-npm install
+bun install
 ```
 
 2. Run the development server:
+
 ```bash
-npm run dev
+bun run dev
 ```
 
 3. Open [http://localhost:3000](http://localhost:3000) in your browser
@@ -44,6 +45,7 @@ All content is stored in easily editable TypeScript files in the `data/` directo
 - `data/profile.ts` - Contains all personal information, projects, experience, skills, education, and certifications
 
 To update your information:
+
 1. Open `data/profile.ts`
 2. Update the relevant sections with your information
 3. Save the file and the website will automatically update
@@ -51,6 +53,7 @@ To update your information:
 ### Adding New Sections
 
 Each section is a separate component in `components/sections/`:
+
 - `hero.tsx` - Home/intro section
 - `projects.tsx` - Projects showcase
 - `experience.tsx` - Work experience timeline
@@ -68,8 +71,8 @@ Each section is a separate component in `components/sections/`:
 ## Building for Production
 
 ```bash
-npm run build
-npm run start
+bun run build
+bun run start
 ```
 
 ## Deployment
@@ -77,11 +80,13 @@ npm run start
 The site can be deployed to any platform that supports Next.js:
 
 ### Vercel (Recommended)
+
 1. Push your code to GitHub
 2. Import the project to Vercel
 3. Deploy with default settings
 
 ### Other Platforms
+
 - Netlify
 - AWS Amplify
 - Railway
@@ -98,7 +103,6 @@ The site can be deployed to any platform that supports Next.js:
 ## Project Structure
 
 ```
-rafal-cv/
 ├── app/
 │   ├── layout.tsx      # Root layout
 │   ├── page.tsx        # Home page
