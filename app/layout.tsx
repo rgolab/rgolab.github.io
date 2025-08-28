@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     "Professional CV and portfolio of Rafał Gołąb - DevOps Engineer, Cloud Architect, DevSecOps and SRE specialist",
   keywords:
     "DevOps, Cloud Architecture, DevSecOps, SRE, AWS, Azure, Kubernetes, Docker",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
