@@ -9,7 +9,7 @@ export default function HeroSection() {
       id="home"
       className="section min-h-screen flex items-center pt-16 relative"
       style={{
-        backgroundImage: `url('https://rgolab.com/oferta/assets/images/20190514-11.jpg')`,
+        backgroundImage: `url('/me.jpg')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
