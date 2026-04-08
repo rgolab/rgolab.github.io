@@ -22,6 +22,7 @@ export default function ContactSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -35,6 +36,7 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
     try {
       const response = await fetch(
@@ -57,93 +59,80 @@ export default function ContactSection() {
       } else {
         throw new Error("Failed to send message");
       }
-    } catch (error) {
-      console.error("Error sending message:", error);
-      // You could add error state handling here if needed
+    } catch {
+      setError(
+        "Failed to send message. Please try again or email me directly."
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const socialLinks = [
+    { href: profileData.linkedin, icon: Linkedin, label: "LinkedIn" },
+    { href: profileData.github, icon: Github, label: "GitHub" },
+    { href: profileData.instagram, icon: Instagram, label: "Instagram" },
+    { href: profileData.twitter, icon: X, label: "X" },
+  ];
+
   return (
     <section id="contact" className="section">
       <div className="section-container">
-        <h2 className="heading mb-12">Get In Touch</h2>
+        <h2 className="heading mb-14">Get In Touch</h2>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-10">
           {/* Contact Information */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3 tracking-tight">
                 Let&apos;s Connect
               </h3>
-              <p className="text-muted mb-6">
+              <p className="text-muted leading-relaxed">
                 I&apos;m always interested in discussing new opportunities,
                 challenging projects, or how I can help your team achieve its
                 DevOps and cloud infrastructure goals.
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               <a
                 href={`mailto:${profileData.email}`}
-                className="flex items-center gap-3 text-muted hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                className="flex items-center gap-3 text-muted hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
               >
-                <div className="p-2 bg-primary-100 dark:bg-primary-900/30 rounded-lg">
-                  <Mail className="h-5 w-5 text-primary-600 dark:text-primary-400" />
+                <div className="p-2.5 bg-primary-50 dark:bg-primary-900/20 rounded-xl">
+                  <Mail className="h-4 w-4 text-primary-600 dark:text-primary-400" />
                 </div>
-                <span>{profileData.email}</span>
+                <span className="text-sm">{profileData.email}</span>
               </a>
 
               <div className="flex items-center gap-3 text-muted">
-                <div className="p-2 bg-primary-100 dark:bg-primary-900/30 rounded-lg">
-                  <MapPin className="h-5 w-5 text-primary-600 dark:text-primary-400" />
+                <div className="p-2.5 bg-primary-50 dark:bg-primary-900/20 rounded-xl">
+                  <MapPin className="h-4 w-4 text-primary-600 dark:text-primary-400" />
                 </div>
-                <span>{profileData.location}</span>
+                <span className="text-sm">{profileData.location}</span>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
-              <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+            <div className="pt-6 border-t border-gray-200 dark:border-surface-darkBorder">
+              <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3 tracking-tight">
                 Follow Me
               </h4>
-              <div className="flex gap-4">
-                <a
-                  href={profileData.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors"
-                  title="LinkedIn"
-                >
-                  <Linkedin className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-                </a>
-                <a
-                  href={profileData.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors"
-                  title="GitHub"
-                >
-                  <Github className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-                </a>
-                <a
-                  href={profileData.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors"
-                  title="Instagram"
-                >
-                  <Instagram className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-                </a>
-                <a
-                  href={profileData.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors"
-                  title="X"
-                >
-                  <X className="h-5 w-5 text-gray-700 dark:text-gray-300" />
-                </a>
+              <div className="flex gap-2">
+                {socialLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2.5 bg-gray-100 dark:bg-surface-darkElevated rounded-xl hover:bg-gray-200 dark:hover:bg-surface-darkBorder transition-colors"
+                      title={link.label}
+                    >
+                      <Icon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -154,7 +143,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
                 >
                   Your Name
                 </label>
@@ -172,7 +161,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
                 >
                   Email Address
                 </label>
@@ -190,7 +179,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="subject"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
                 >
                   Subject
                 </label>
@@ -208,7 +197,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
                 >
                   Message
                 </label>
@@ -226,26 +215,34 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <>Processing...</>
                 ) : (
                   <>
-                    <Send className="h-5 w-5" />
+                    <Send className="h-4 w-4" />
                     Send Message
                   </>
                 )}
               </button>
 
-              {isSubmitted && (
-                <div className="flex items-center gap-2 text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 p-3 rounded-lg">
-                  <CheckCircle className="h-5 w-5" />
-                  <span>
-                    Thank you for your message! I&apos;ll get back to you soon.
-                  </span>
-                </div>
-              )}
+              <div aria-live="polite">
+                {isSubmitted && (
+                  <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 p-3 rounded-xl text-sm">
+                    <CheckCircle className="h-4 w-4" />
+                    <span>
+                      Thank you for your message! I&apos;ll get back to you
+                      soon.
+                    </span>
+                  </div>
+                )}
+                {error && (
+                  <div className="flex items-center gap-2 text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 p-3 rounded-xl text-sm">
+                    <span>{error}</span>
+                  </div>
+                )}
+              </div>
             </form>
           </div>
         </div>

@@ -82,28 +82,36 @@ export default function ServicesSection() {
     <section id="offer" className="section">
       <div className="section-container">
         <h2 className="heading mb-4">Offer</h2>
-        <p className="text-center text-muted max-w-3xl mx-auto mb-12">
+        <p className="text-center text-muted max-w-2xl mx-auto mb-14">
           I help companies build secure, efficient and scalable cloud platforms.
           Below are the areas where I most often support.
         </p>
 
-        <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <div key={index} className="card h-full p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300">
+              <div key={index} className="card h-full p-6 group">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/30 transition-colors">
                     <Icon className="h-5 w-5" />
                   </span>
-                  <h3 className="text-lg font-semibold">{service.title}</h3>
+                  <h3 className="text-base font-semibold tracking-tight">
+                    {service.title}
+                  </h3>
                 </div>
-                <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+                <p className="text-sm text-muted mb-4 leading-relaxed">
                   {service.description}
                 </p>
-                <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-disc pl-5">
+                <ul className="space-y-1.5">
                   {service.points.map((p, i) => (
-                    <li key={i}>{p}</li>
+                    <li
+                      key={i}
+                      className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-primary-500 shrink-0" />
+                      {p}
+                    </li>
                   ))}
                 </ul>
               </div>

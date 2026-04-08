@@ -62,7 +62,7 @@ export const profileData = {
   github: "https://github.com/rgolab",
   instagram: "https://www.instagram.com/rafal.golab/",
   twitter: "https://x.com/rgolab",
-  profileImage: "/profile.jpg",
+  profileImage: "/me.jpg",
 };
 
 export const projects: Project[] = [
@@ -138,7 +138,7 @@ export const experiences: Experience[] = [
     current: true,
     description:
       "Working in the Dovecot Cloud team as a DevOps and Kubernetes expert, focusing on cloud infrastructure and container orchestration.",
-    achievements: ["Key achievements to be added later"],
+    achievements: [],
   },
   {
     id: "2",
@@ -352,7 +352,7 @@ export const skills: Skill[] = [
       { name: "Google Cloud Platform", level: "advanced" },
       { name: "DigitalOcean", level: "intermediate" },
       { name: "Azure", level: "beginner" },
-      { name: "OpenStack", level: "beginner" },
+      { name: "OpenStack", level: "intermediate" },
     ],
   },
   {
@@ -672,7 +672,7 @@ export const companies: Company[] = [
   },
   {
     name: "Cashpoint",
-    url: "#ls ",
+    url: "#",
     logo: "/logos/cashpoint.png",
   },
   {

@@ -23,16 +23,16 @@ function ToggleSwitch({
       disabled={disabled}
       onClick={() => !disabled && onChange(!checked)}
       className={`
-        relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-500 focus:ring-offset-2
+        relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500/40 focus:ring-offset-2
         ${
           checked
-            ? "bg-gray-500 dark:bg-gray-400"
+            ? "bg-primary-600 dark:bg-primary-500"
             : "bg-gray-200 dark:bg-gray-700"
         }
         ${
           disabled
             ? "cursor-not-allowed opacity-60"
-            : "cursor-pointer hover:bg-gray-600 dark:hover:bg-gray-500"
+            : "cursor-pointer hover:bg-primary-500 dark:hover:bg-primary-400"
         }
       `}
       aria-label={label}
@@ -95,7 +95,7 @@ export default function CookieConsent() {
   if (!showConsent) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[9999] bg-white dark:bg-surface-dark border-t border-gray-200 dark:border-gray-700 shadow-2xl">
+    <div className="fixed bottom-0 left-0 right-0 z-[9999] bg-white/95 dark:bg-surface-dark/95 backdrop-blur-xl border-t border-gray-200 dark:border-surface-darkBorder">
       <div className="max-w-7xl mx-auto p-4">
         {!showSettings ? (
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
@@ -111,32 +111,26 @@ export default function CookieConsent() {
                 We use cookies to enhance your experience, analyze site traffic,
                 and personalize content. By clicking "Accept All", you consent
                 to our use of cookies.
-                <a
-                  href="#"
-                  className="text-primary-600 dark:text-primary-400 hover:underline ml-1"
-                >
-                  Learn more
-                </a>
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
               <button
                 onClick={() => setShowSettings(true)}
-                className="px-4 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-700 dark:text-gray-300"
+                className="px-4 py-2 text-sm border border-gray-200 dark:border-surface-darkBorder rounded-xl hover:bg-gray-50 dark:hover:bg-surface-darkElevated transition-colors text-gray-700 dark:text-gray-300"
               >
                 <Settings className="h-4 w-4 inline mr-1" />
                 Customize
               </button>
               <button
                 onClick={handleDecline}
-                className="px-4 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-700 dark:text-gray-300"
+                className="px-4 py-2 text-sm border border-gray-200 dark:border-surface-darkBorder rounded-xl hover:bg-gray-50 dark:hover:bg-surface-darkElevated transition-colors text-gray-700 dark:text-gray-300"
               >
                 Decline
               </button>
               <button
                 onClick={handleAcceptAll}
-                className="px-4 py-2 text-sm bg-gray-700 hover:bg-gray-600 dark:bg-gray-600 dark:hover:bg-gray-500 text-white rounded-lg transition-colors"
+                className="px-4 py-2 text-sm border border-gray-200 dark:border-surface-darkBorder rounded-xl hover:bg-gray-50 dark:hover:bg-surface-darkElevated transition-colors text-gray-700 dark:text-gray-300"
               >
                 Accept All
               </button>
@@ -157,7 +151,7 @@ export default function CookieConsent() {
             </div>
 
             <div className="space-y-3">
-              <div className="flex items-center justify-between p-3 bg-white dark:bg-surface-darkElevated rounded-lg border border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-surface-darkElevated rounded-xl border border-gray-200 dark:border-surface-darkBorder">
                 <div className="flex items-center gap-3">
                   <Shield className="h-5 w-5 text-green-600 dark:text-green-400" />
                   <div>
@@ -177,7 +171,7 @@ export default function CookieConsent() {
                 />
               </div>
 
-              <div className="flex items-center justify-between p-3 bg-white dark:bg-surface-darkElevated rounded-lg border border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-surface-darkElevated rounded-xl border border-gray-200 dark:border-surface-darkBorder">
                 <div className="flex items-center gap-3">
                   <Cookie className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   <div>
@@ -201,7 +195,7 @@ export default function CookieConsent() {
                 />
               </div>
 
-              <div className="flex items-center justify-between p-3 bg-white dark:bg-surface-darkElevated rounded-lg border border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-surface-darkElevated rounded-xl border border-gray-200 dark:border-surface-darkBorder">
                 <div className="flex items-center gap-3">
                   <Cookie className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                   <div>
@@ -225,7 +219,7 @@ export default function CookieConsent() {
                 />
               </div>
 
-              <div className="flex items-center justify-between p-3 bg-white dark:bg-surface-darkElevated rounded-lg border border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-surface-darkElevated rounded-xl border border-gray-200 dark:border-surface-darkBorder">
                 <div className="flex items-center gap-3">
                   <Settings className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                   <div>
@@ -253,13 +247,13 @@ export default function CookieConsent() {
             <div className="flex gap-2 pt-2">
               <button
                 onClick={() => setShowSettings(false)}
-                className="px-4 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-gray-700 dark:text-gray-300"
+                className="px-4 py-2 text-sm border border-gray-200 dark:border-surface-darkBorder rounded-xl hover:bg-gray-50 dark:hover:bg-surface-darkElevated transition-colors text-gray-700 dark:text-gray-300"
               >
                 Back
               </button>
               <button
                 onClick={handleAcceptSelected}
-                className="px-4 py-2 text-sm bg-gray-700 hover:bg-gray-600 dark:bg-gray-600 dark:hover:bg-gray-500 text-white rounded-lg transition-colors"
+                className="px-4 py-2 text-sm bg-primary-600 hover:bg-primary-500 text-white rounded-xl transition-colors font-medium"
               >
                 Save Preferences
               </button>

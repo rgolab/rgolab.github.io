@@ -5,12 +5,12 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 224 71% 4%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 240 10% 4%;
+    --foreground: 210 20% 95%;
   }
 }
 
@@ -34,37 +34,37 @@
     @apply min-h-screen bg-white dark:bg-surface-dark text-gray-900 dark:text-gray-100;
   }
   .section {
-    @apply py-8 px-4 scroll-mt-16;
+    @apply py-16 md:py-24 px-4 sm:px-6 scroll-mt-16;
   }
   .section-container {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-6xl mx-auto;
   }
   .section-full {
-    @apply py-8 px-0 scroll-mt-16;
+    @apply py-16 md:py-24 px-0 scroll-mt-16;
   }
   .section-container-full {
     @apply w-full;
   }
   .heading {
-    @apply text-3xl md:text-4xl font-bold text-center;
+    @apply text-3xl md:text-4xl font-bold text-center tracking-tight;
   }
   .card {
-    @apply bg-white dark:bg-surface-darkElevated rounded-xl ring-1 ring-gray-200/60 dark:ring-gray-800/60 shadow-sm hover:shadow-md transition-shadow;
+    @apply bg-white dark:bg-surface-darkElevated rounded-2xl border border-gray-200 dark:border-surface-darkBorder shadow-sm transition-all duration-200 hover:shadow-lg hover:border-gray-300 dark:hover:border-gray-600;
   }
   .card-full {
-    @apply bg-white dark:bg-surface-darkElevated rounded-none ring-1 ring-gray-200/60 dark:ring-gray-800/60 shadow-sm hover:shadow-md transition-shadow;
+    @apply bg-white dark:bg-surface-darkElevated rounded-none border-y border-gray-200 dark:border-surface-darkBorder shadow-sm;
   }
   .text-muted {
-    @apply text-gray-600 dark:text-gray-400;
+    @apply text-gray-500 dark:text-gray-400;
   }
   .badge-primary {
-    @apply px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-xs font-medium;
+    @apply px-3 py-1 bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-300 rounded-full text-xs font-medium;
   }
   .form-input {
-    @apply w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-surface-darkMuted text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+    @apply w-full px-4 py-3 border border-gray-200 dark:border-surface-darkBorder rounded-xl bg-gray-50 dark:bg-surface-darkMuted text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 transition-all;
   }
   .form-textarea {
-    @apply w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-surface-darkMuted text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none;
+    @apply w-full px-4 py-3 border border-gray-200 dark:border-surface-darkBorder rounded-xl bg-gray-50 dark:bg-surface-darkMuted text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-500 transition-all resize-none;
   }
 }
 
@@ -74,20 +74,20 @@ html {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-gray-900;
+  @apply bg-transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-400 dark:bg-gray-600 rounded-full;
+  @apply bg-gray-300 dark:bg-gray-700 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-500 dark:bg-gray-500;
+  @apply bg-gray-400 dark:bg-gray-600;
 }
 
 /* Truly seamless infinite scroll - no restart */
@@ -102,14 +102,24 @@ html {
 
 .continuous-scroll {
   animation: continuous-scroll 20s linear infinite;
-  /* Force hardware acceleration for smooth performance */
   transform: translateZ(0);
   will-change: transform;
 }
 
 .animate-scroll {
   animation: continuous-scroll 60s linear infinite;
-  /* Force hardware acceleration for smooth performance */
   transform: translateZ(0);
   will-change: transform;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .continuous-scroll,
+  .animate-scroll {
+    animation: none !important;
+  }
+
+  .animate-slide-up {
+    animation: none !important;
+  }
 }

@@ -21,6 +21,20 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
   },
+  openGraph: {
+    title: "Rafał Gołąb - DevOps & Cloud Architect",
+    description:
+      "Professional CV and portfolio of Rafał Gołąb - DevOps Engineer, Cloud Architect, DevSecOps and SRE specialist",
+    url: "https://rgolab.github.io",
+    siteName: "Rafał Gołąb",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Rafał Gołąb - DevOps & Cloud Architect",
+    description:
+      "Professional CV and portfolio of Rafał Gołąb - DevOps Engineer, Cloud Architect, DevSecOps and SRE specialist",
+  },
 };
 
 export default function RootLayout({
@@ -35,9 +49,15 @@ export default function RootLayout({
       className={`${inter.variable} ${plusJakarta.variable}`}
     >
       <body className="font-sans">
+        <a
+          href="#home"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-white focus:dark:bg-gray-900 focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:text-primary-600"
+        >
+          Skip to main content
+        </a>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
