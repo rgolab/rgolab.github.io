@@ -99,7 +99,7 @@ export default function Navigation() {
             <Link
               href="#home"
               onClick={() => handleNavClick("home")}
-              className="text-xl font-bold text-primary-600 dark:text-primary-400"
+              className="text-xl font-bold text-primary-700 dark:text-primary-400"
             >
               Rafał Gołąb
             </Link>
@@ -118,8 +118,8 @@ export default function Navigation() {
                     onClick={() => handleNavClick(sectionId)}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                       isActive
-                        ? "text-primary-600 dark:text-primary-400"
-                        : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
+                        ? "text-primary-700 dark:text-primary-400"
+                        : "text-gray-600 dark:text-gray-300 hover:text-primary-700 dark:hover:text-primary-400"
                     }`}
                   >
                     {item.name}
@@ -192,8 +192,8 @@ export default function Navigation() {
                   href={item.href}
                   className={`block px-3 py-2 rounded-md text-base font-medium ${
                     isActive
-                      ? "text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20"
-                      : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
+                      ? "text-primary-700 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20"
+                      : "text-gray-600 dark:text-gray-300 hover:text-primary-700 dark:hover:text-primary-400"
                   }`}
                   onClick={() => {
                     handleNavClick(sectionId);

@@ -21,7 +21,7 @@ export default function HeroSection() {
       <div className="max-w-6xl mx-auto w-full py-12 relative z-10">
         <div className="max-w-2xl">
           <div className="animate-slide-up">
-            <p className="text-sm font-medium tracking-widest uppercase text-primary-300 mb-4">
+            <p className="text-sm font-medium tracking-widest uppercase text-primary-200 mb-4">
               {profileData.title}
             </p>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white tracking-tight">
