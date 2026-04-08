@@ -1,0 +1,8 @@
+{
+    "workbench.colorTheme": "Tokyo Night",
+    "editor.inlayHints.enabled": "off",
+    "editor.parameterHints.enabled": false,
+    "editor.parameterHints.cycle": true,
+    "terminal.integrated.initialHint": false
+  }
+  
