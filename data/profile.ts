@@ -46,8 +46,6 @@ export interface Certification {
   id: string;
   name: string;
   issuer: string;
-  date: string;
-  credentialId?: string;
   link?: string;
 }
 
@@ -567,32 +565,30 @@ export const education: Education[] = [
 
 export const certifications: Certification[] = [
   {
+    id: "5",
+    name: "AI_devs 4 Builders",
+    issuer: "AI_devs",
+    link: "https://credsverse.com/credentials/996684a0-b3e9-471a-8b36-f3ae1adef9c5",
+  },
+  {
     id: "1",
     name: "HashiCorp Certified: Terraform Associate",
     issuer: "HashiCorp",
-    date: "2023-06",
-    credentialId: "",
   },
   {
     id: "2",
     name: "Google Cloud Professional Cloud Architect",
     issuer: "Google Cloud",
-    date: "2021-03",
-    credentialId: "",
   },
   {
     id: "4",
     name: "AWS Certified Solutions Architect - Professional",
     issuer: "Amazon Web Services",
-    date: "in progress",
-    credentialId: "",
   },
   {
     id: "3",
     name: "Certified Kubernetes Administrator (CKA)",
     issuer: "Cloud Native Computing Foundation",
-    date: "in progress",
-    credentialId: "",
   },
 ];
 
