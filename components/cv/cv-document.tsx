@@ -139,7 +139,10 @@ export function CVDocument() {
       title={`${cv.name} — CV`}
       author={cv.name}
       subject="Curriculum Vitae"
-      keywords="DevOps, Cloud Architecture, AWS, Kubernetes, Terraform"
+      keywords={cv.keywords.join(", ")}
+      creator="rgolab.github.io CV builder"
+      producer="@react-pdf/renderer"
+      language="en-US"
     >
       <Page size="A4" style={s.page1}>
         <Sidebar />

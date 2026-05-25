@@ -20,6 +20,7 @@ export interface CvData {
   email: string;
   website: string;
   summary: string;
+  keywords: string[];
   expertise: { label: string; items: string[] }[];
   experience: {
     company: string;
@@ -38,6 +39,21 @@ export interface CvData {
   }[];
   education: { degree: string; institution: string; years: string; honors?: string }[];
   certifications: { name: string; issuer: string }[];
+}
+
+function buildKeywords(): string[] {
+  const set = new Set<string>();
+  ["DevOps", "Cloud Architecture", "SRE", "Site Reliability Engineering", "Platform Engineering"]
+    .forEach((k) => set.add(k));
+  for (const cat of skills) {
+    for (const item of cat.items) {
+      set.add(item.cvName ?? item.name);
+    }
+  }
+  for (const p of projects) {
+    set.add(p.industry);
+  }
+  return Array.from(set);
 }
 
 function buildExpertise(): CvData["expertise"] {
@@ -62,6 +78,7 @@ export function buildCvData(): CvData {
     email: profileData.email,
     website: profileData.website,
     summary: profileData.summary,
+    keywords: buildKeywords(),
     expertise: buildExpertise(),
     experience: experiences
       .filter((e) => !e.excludeFromCv)
