@@ -30,16 +30,19 @@ export default function ProjectsSection() {
                     </a>
                   )}
                 </div>
-                <p className="text-xs font-medium text-primary-600 dark:text-primary-400 mb-3">
+                <p className="text-xs font-medium text-primary-600 dark:text-primary-400">
                   {project.role}
                 </p>
-                <p className="text-sm text-muted leading-relaxed mb-4">
+                <p className="text-xs text-muted mb-3">
+                  {project.industry}
+                </p>
+                <p className="text-sm text-muted leading-relaxed mb-4 h-[3rem] line-clamp-2">
                   {project.description}
                 </p>
               </div>
 
               <div className="mb-4">
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-1.5 h-[3rem] content-start overflow-hidden">
                   {project.technologies.map((tech, index) => (
                     <span
                       key={index}

@@ -1,7 +1,7 @@
 "use client";
 
 import { profileData } from "@/data/profile";
-import { Mail, MapPin, Linkedin, Github, Instagram, X } from "lucide-react";
+import { Mail, MapPin, Linkedin, Github, Instagram, X, Download } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -51,6 +51,14 @@ export default function HeroSection() {
                 className="px-6 py-2.5 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-medium transition-colors text-sm"
               >
                 Get in touch
+              </a>
+              <a
+                href="/rafal-golab-cv.pdf"
+                download
+                className="px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl font-medium transition-colors text-sm backdrop-blur-sm flex items-center gap-2"
+              >
+                <Download className="h-4 w-4" />
+                Download CV
               </a>
               <a
                 href={profileData.linkedin}

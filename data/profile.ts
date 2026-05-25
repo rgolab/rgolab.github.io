@@ -1,11 +1,13 @@
 export interface Project {
   id: string;
   name: string;
+  industry: string;
   description: string;
   role: string;
   technologies: string[];
   outcomes: string[];
   link?: string;
+  cvInclude?: boolean;
 }
 
 export interface Experience {
@@ -17,7 +19,11 @@ export interface Experience {
   current: boolean;
   description: string;
   achievements: string[];
+  cvHighlights?: string[];
+  excludeFromCv?: boolean;
 }
+
+export type CvSkillGroup = "Cloud & Infra" | "IaC & Automation" | "CI/CD & GitOps";
 
 export interface Company {
   name: string;
@@ -30,6 +36,8 @@ export interface Skill {
   items: {
     name: string;
     level: "beginner" | "intermediate" | "advanced" | "expert";
+    cvGroup?: CvSkillGroup;
+    cvName?: string;
   }[];
 }
 
@@ -55,6 +63,7 @@ export const profileData = {
   summary:
     "Experienced DevOps Engineer and Cloud Architect with over 20 years of professional IT experience. I am a strong advocate of Dev*Ops methodologies and the Everything as Code (EaaC) approach, specializing in AWS and Google Cloud Platform. I excel at building and maintaining scalable, secure, and highly available infrastructure while leading cross-functional teams and mentoring junior engineers.",
   email: "contact@rgolab.com",
+  website: "https://rgolab.github.io",
   location: "Krakow, Poland",
   linkedin: "https://www.linkedin.com/in/rgolab/",
   github: "https://github.com/rgolab",
@@ -66,62 +75,131 @@ export const profileData = {
 export const projects: Project[] = [
   {
     id: "1",
-    name: "Cloud Migration Platform",
+    name: "AI-Powered Banking Contact Center",
+    industry: "Banking / Financial services",
     description:
-      "Led the migration of monolithic applications to microservices architecture on AWS",
-    role: "Lead DevOps Engineer",
+      "Serverless AI contact center replacing a legacy bank PBX with an LLM-driven conversational IVR.",
+    role: "Lead DevOps & Solution Architect",
     technologies: [
-      "AWS",
-      "Kubernetes",
-      "Docker",
+      "AWS Connect",
+      "AWS Lex",
+      "AWS Bedrock",
+      "OpenAI Whisper",
+      "OpenAI GPT",
       "Terraform",
-      "Jenkins",
-      "GitLab CI",
     ],
     outcomes: [
-      "Reduced infrastructure costs by 40%",
-      "Improved deployment frequency from monthly to daily",
-      "Achieved 99.99% uptime SLA",
+      "Replaced legacy PBX with serverless AI-powered contact center",
+      "First LLM-powered IVR in production for the bank",
+      "Self-service handling for majority of calls",
     ],
+    cvInclude: true,
   },
   {
     id: "2",
-    name: "DevSecOps Pipeline Implementation",
+    name: "Hardened Mail Platform on Kubernetes",
+    industry: "Public sector / Government",
     description:
-      "Designed and implemented comprehensive DevSecOps pipeline for financial services platform",
-    role: "DevSecOps Architect",
+      "Hardened Kubernetes mail platform with a custom fleet-scale operator.",
+    role: "Lead DevOps & Solution Architect",
     technologies: [
-      "Azure DevOps",
-      "SonarQube",
-      "OWASP ZAP",
-      "Vault",
-      "Prometheus",
-      "Grafana",
+      "Kubernetes (RKE strict)",
+      "Wolfi (distroless)",
+      "Kyverno",
+      "Cilium",
+      "Python",
+      "Helm",
     ],
     outcomes: [
-      "Reduced security vulnerabilities by 85%",
-      "Automated 95% of security testing",
-      "Decreased mean time to resolution by 60%",
+      "Migrated legacy mail server to hardened Kubernetes platform",
+      "Defense-in-depth: rootless, distroless, no-shell images",
+      "Met government / CIS hardening requirements for production",
     ],
+    cvInclude: true,
   },
   {
     id: "3",
-    name: "Kubernetes Platform Engineering",
+    name: "Real-Money Online Gaming Platform",
+    industry: "Online gaming",
     description:
-      "Built and maintained multi-tenant Kubernetes platform for 50+ development teams",
-    role: "Platform Engineer",
+      "Real-money online gaming platform on AWS with multi-region high-availability.",
+    role: "Lead DevOps & Solution Architect",
     technologies: [
-      "Kubernetes",
-      "Istio",
-      "ArgoCD",
+      "AWS",
+      "EKS",
       "Helm",
-      "Prometheus",
-      "ELK Stack",
+      "ArgoCD",
+      "Redis",
+      "Terraform",
+      "GitLab CI",
     ],
     outcomes: [
-      "Enabled self-service deployment for all teams",
-      "Reduced resource utilization by 35%",
-      "Implemented zero-downtime deployments",
+      "Maintained 99.9%+ uptime SLA for real-money gaming",
+      "Multi-region high-availability for low-latency gameplay",
+      "Auto-scaling for peak-hour traffic (weekends, sports events)",
+    ],
+  },
+  {
+    id: "4",
+    name: "Multi-Exchange Crypto Trading Bots",
+    industry: "Crypto / fintech trading platform",
+    description:
+      "Python trading bots integrating with multiple crypto exchanges concurrently.",
+    role: "Lead DevOps & Software Engineer",
+    technologies: [
+      "DigitalOcean",
+      "Python",
+      "Ansible",
+      "Docker",
+      "Terraform",
+      "GitLab CI",
+    ],
+    outcomes: [
+      "Built trading bots integrating multiple exchanges concurrently",
+      "24/7/365 unattended trading operations with high reliability",
+      "Resilient design tolerating individual exchange API outages",
+    ],
+    cvInclude: true,
+  },
+  {
+    id: "5",
+    name: "On-Premise Sports Betting Platform",
+    industry: "Sports betting",
+    description:
+      "Fully on-premise multi-cluster Kubernetes platform powering a sports betting operator.",
+    role: "Lead DevOps & Solution Architect",
+    technologies: [
+      "Kubernetes (RKE / Rancher)",
+      "Elastic Stack",
+      "Helm",
+      "Terraform",
+      "GitLab CI",
+    ],
+    outcomes: [
+      "Operated production sports betting platform fully on-premise",
+      "Multi-cluster Kubernetes in datacenter (bare-metal / VM)",
+      "End-to-end observability with Elastic Stack (logs, metrics, traces)",
+    ],
+  },
+  {
+    id: "6",
+    name: "E-Bike IoT Telemetry Platform",
+    industry: "E-mobility / IoT",
+    description:
+      "End-to-end IoT telemetry platform on GCP for an electric bike fleet — ingest, process, visualize.",
+    role: "Lead DevOps & Solution Architect",
+    technologies: [
+      "GCP",
+      "GKE",
+      "Pub/Sub",
+      "DataFlow",
+      "BigQuery",
+      "Apache Airflow",
+    ],
+    outcomes: [
+      "Built end-to-end IoT telemetry platform on GCP",
+      "Real-time + batch processing pipeline (DataFlow + BigQuery)",
+      "Scaled to telemetry from thousands of connected bikes",
     ],
   },
 ];
@@ -129,14 +207,20 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
   {
     id: "1",
-    company: "Open xChange",
-    position: "DevOps / Kubernetes Expert",
+    company: "Tektit Consulting",
+    position: "SRE / DevOps / Kubernetes Expert",
     startDate: "2025-03",
     endDate: "",
     current: true,
     description:
-      "Working in the Dovecot Cloud team as a DevOps and Kubernetes expert, focusing on cloud infrastructure and container orchestration.",
+      "Working as SRE / DevOps / Kubernetes expert on multi-cluster operations across cloud and bare-metal environments.",
     achievements: [],
+    cvHighlights: [
+      "Maintaining Kubernetes clusters across bare-metal, AWS EKS, and Azure AKS environments",
+      "Designing and managing Helm charts for multi-cluster deployments",
+      "Creating Architecture Decision Records (ADRs) to document technical decisions",
+      "Deploying and managing dynamic environments on Kubernetes",
+    ],
   },
   {
     id: "2",
@@ -153,6 +237,11 @@ export const experiences: Experience[] = [
       "Managing AWS cloud infrastructure and Kubernetes clusters",
       "Overseeing GitLab CI/CD pipelines and automation workflows",
       "Leading cross-functional teams in cloud architecture decisions",
+    ],
+    cvHighlights: [
+      "Implemented Everything as a Code (EaaC) and Infrastructure as Code (IaaC) approaches",
+      "Leading DevSecOps initiatives and security-first development practices",
+      "Managing AWS cloud infrastructure and Kubernetes clusters",
     ],
   },
   {
@@ -172,6 +261,11 @@ export const experiences: Experience[] = [
       "Mentored junior DevOps engineers and established best practices",
       "Managed on-premise infrastructure modernization projects",
     ],
+    cvHighlights: [
+      "Implemented EaaC methodologies across multiple client projects",
+      "Managed Kubernetes clusters and CI/CD pipelines for enterprise applications",
+      "Led cloud migration projects from on-premise to cloud platforms",
+    ],
   },
   {
     id: "4",
@@ -188,6 +282,11 @@ export const experiences: Experience[] = [
       "Established CI/CD pipelines and DevOps best practices",
       "Architected AWS and GCP cloud solutions for gaming platforms",
       "Led technical decisions for scalable gambling system architecture",
+    ],
+    cvHighlights: [
+      "Implemented Everything as a Code approach for gambling platform infrastructure",
+      "Designed and managed Kubernetes clusters for high-availability systems",
+      "Established CI/CD pipelines and DevOps best practices",
     ],
   },
   {
@@ -206,6 +305,11 @@ export const experiences: Experience[] = [
       "Managed Kubernetes clusters and container orchestration",
       "Led self-organized teams using Scaled Agile (SAFe) methodology",
     ],
+    cvHighlights: [
+      "Implemented Everything as a Code methodologies for infrastructure",
+      "Designed high-availability and serverless cloud architectures",
+      "Established CI/CD pipelines with security-first approach",
+    ],
   },
   {
     id: "6",
@@ -222,6 +326,10 @@ export const experiences: Experience[] = [
       "Developed and maintained AWS cloud architecture",
       "Led self-organized teams in infrastructure management",
       "Established monitoring and alerting systems for production environments",
+    ],
+    cvHighlights: [
+      "Managed Linux infrastructure including administration, monitoring, and problem resolution",
+      "Implemented continuous integration and continuous delivery pipelines",
     ],
   },
   {
@@ -240,6 +348,7 @@ export const experiences: Experience[] = [
       "Designed and maintained AWS cloud infrastructure",
       "Established server management and backup procedures",
     ],
+    excludeFromCv: true,
   },
   {
     id: "8",
@@ -257,6 +366,7 @@ export const experiences: Experience[] = [
       "Contributed to academic research in computational sciences",
       "Maintained high-performance computing infrastructure",
     ],
+    excludeFromCv: true,
   },
   {
     id: "9",
@@ -274,6 +384,7 @@ export const experiences: Experience[] = [
       "Designed and developed client websites and applications",
       "Provided technical support and client helpdesk services",
     ],
+    excludeFromCv: true,
   },
   {
     id: "10",
@@ -290,6 +401,7 @@ export const experiences: Experience[] = [
       "Implemented database architecture and API integrations",
       "Provided ongoing maintenance and system improvements",
     ],
+    excludeFromCv: true,
   },
   {
     id: "11",
@@ -307,6 +419,7 @@ export const experiences: Experience[] = [
       "Maintained server infrastructure and security",
       "Provided ongoing system administration and optimization",
     ],
+    excludeFromCv: true,
   },
   {
     id: "12",
@@ -323,6 +436,7 @@ export const experiences: Experience[] = [
       "Gained hands-on experience in system administration",
       "Contributed to programming and development initiatives",
     ],
+    excludeFromCv: true,
   },
   {
     id: "13",
@@ -339,6 +453,7 @@ export const experiences: Experience[] = [
       "Provided technical support for network services",
       "Ensured network reliability and performance",
     ],
+    excludeFromCv: true,
   },
 ];
 
@@ -346,8 +461,8 @@ export const skills: Skill[] = [
   {
     category: "Cloud Platforms",
     items: [
-      { name: "AWS", level: "expert" },
-      { name: "Google Cloud Platform", level: "advanced" },
+      { name: "AWS", level: "expert", cvGroup: "Cloud & Infra" },
+      { name: "Google Cloud Platform", level: "advanced", cvGroup: "Cloud & Infra", cvName: "GCP" },
       { name: "DigitalOcean", level: "intermediate" },
       { name: "Azure", level: "beginner" },
       { name: "OpenStack", level: "intermediate" },
@@ -356,19 +471,19 @@ export const skills: Skill[] = [
   {
     category: "Containerization & Orchestration",
     items: [
-      { name: "Docker", level: "expert" },
-      { name: "Kubernetes", level: "expert" },
+      { name: "Docker", level: "expert", cvGroup: "Cloud & Infra" },
+      { name: "Kubernetes", level: "expert", cvGroup: "Cloud & Infra" },
       { name: "Docker Compose", level: "advanced" },
-      { name: "Helm", level: "advanced" },
+      { name: "Helm", level: "advanced", cvGroup: "Cloud & Infra" },
       { name: "Kustomize", level: "intermediate" },
     ],
   },
   {
     category: "Infrastructure as Code & Automation",
     items: [
-      { name: "Terraform", level: "expert" },
-      { name: "Ansible", level: "expert" },
-      { name: "Packer", level: "advanced" },
+      { name: "Terraform", level: "expert", cvGroup: "IaC & Automation" },
+      { name: "Ansible", level: "expert", cvGroup: "IaC & Automation" },
+      { name: "Packer", level: "advanced", cvGroup: "IaC & Automation" },
       { name: "CloudFormation", level: "intermediate" },
       { name: "Terragrunt", level: "intermediate" },
       { name: "Pulumi", level: "beginner" },
@@ -377,10 +492,11 @@ export const skills: Skill[] = [
   {
     category: "CI/CD & GitOps",
     items: [
-      { name: "GitLab CI", level: "expert" },
-      { name: "Jenkins", level: "advanced" },
-      { name: "GitHub Actions", level: "advanced" },
-      { name: "ArgoCD", level: "advanced" },
+      { name: "GitLab CI", level: "expert", cvGroup: "CI/CD & GitOps" },
+      { name: "Jenkins", level: "expert", cvGroup: "CI/CD & GitOps" },
+      { name: "GitHub Actions", level: "expert", cvGroup: "CI/CD & GitOps" },
+      { name: "ArgoCD", level: "advanced", cvGroup: "CI/CD & GitOps" },
+      { name: "fluxcd", level: "advanced", cvGroup: "CI/CD & GitOps", cvName: "FluxCD" },
       { name: "n8n", level: "advanced" },
       { name: "Make", level: "advanced" },
       { name: "Azure DevOps", level: "intermediate" },
@@ -395,7 +511,7 @@ export const skills: Skill[] = [
       { name: "Python", level: "advanced" },
       { name: "PHP", level: "intermediate" },
       { name: "JavaScript/TypeScript", level: "intermediate" },
-      { name: "Go", level: "beginner" },
+      { name: "Go", level: "intermediate" },
       { name: "Java", level: "beginner" },
       { name: "C/C++", level: "beginner" },
       { name: "PowerShell", level: "beginner" },
@@ -430,7 +546,7 @@ export const skills: Skill[] = [
       { name: "pytest", level: "advanced" },
       { name: "SonarQube", level: "intermediate" },
       { name: "Selenium", level: "intermediate" },
-      { name: "Playwright", level: "beginner" },
+      { name: "Playwright", level: "intermediate" },
     ],
   },
   {
@@ -519,8 +635,8 @@ export const skills: Skill[] = [
     category: "AI Tools & Development",
     items: [
       { name: "Cursor", level: "advanced" },
-      { name: "Cloud Code", level: "intermediate" },
-      { name: "RAG Systems", level: "intermediate" },
+      { name: "Claude Code", level: "expert" },
+      { name: "RAG Systems", level: "advanced" },
       { name: "GitHub Copilot", level: "intermediate" },
       { name: "LangChain", level: "beginner" },
     ],
@@ -529,10 +645,10 @@ export const skills: Skill[] = [
     category: "Project Management & Tools",
     items: [
       { name: "JIRA", level: "advanced" },
-      { name: "GitLab", level: "advanced" },
+      { name: "GitLab", level: "expert" },
       { name: "Agile", level: "intermediate" },
-      { name: "SCRUM", level: "intermediate" },
-      { name: "SAFe", level: "beginner" },
+      { name: "SCRUM", level: "advanced" },
+      { name: "SAFe", level: "intermediate" },
     ],
   },
 ];
