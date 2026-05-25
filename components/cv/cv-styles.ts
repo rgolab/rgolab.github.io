@@ -298,6 +298,19 @@ export const s = StyleSheet.create({
     marginBottom: 2,
   },
 
+  // GDPR consent clause
+  consent: {
+    position: "absolute",
+    bottom: 24,
+    left: 24,
+    right: 30,
+    fontSize: 6.5,
+    color: C.muted,
+    fontStyle: "italic",
+    lineHeight: 1.3,
+    textAlign: "center",
+  },
+
   // Footer
   footer: {
     position: "absolute",

@@ -125,6 +125,11 @@ function MainContent() {
         ))}
       </View>
 
+      <Text style={s.consent}>
+        I hereby consent to the processing of my personal data for the purposes of the recruitment
+        process, pursuant to the GDPR — Regulation (EU) 2016/679 of 27 April 2016.
+      </Text>
+
       <View style={s.footer}>
         <Link src="https://rgolab.github.io" style={s.footerLink}>rgolab.github.io</Link>
       </View>
